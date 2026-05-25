@@ -1,0 +1,6 @@
+[theme]
+primaryColor             = "#7297C5"   # GS steel blue
+backgroundColor          = "#FFFFFF"   # white
+secondaryBackgroundColor = "#F4F5F7"   # light gray (GS card/section bg)
+textColor                = "#181818"   # near-black
+font                     = "sans serif"

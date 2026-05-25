@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+portfolio_backtest.png
+*.zip
+.gstack/
+.claude/
+.DS_Store
+cache/
+guillaume-unknown-design-*.md

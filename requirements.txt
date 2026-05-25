@@ -1,0 +1,9 @@
+anthropic
+streamlit
+matplotlib
+numpy
+pandas
+plotly
+requests
+yfinance
+edgartools
