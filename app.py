@@ -901,13 +901,24 @@ if submitted:
     if not req_email.strip() or not req_strategy.strip():
         st.warning("Please fill in your email and strategy description.")
     else:
-        import urllib.parse
         name_line = f"Name: {req_name.strip()}\n" if req_name.strip() else ""
         body = (
             f"{name_line}"
             f"Email: {req_email.strip()}\n\n"
             f"Strategy request:\n{req_strategy.strip()}"
         )
-        mailto = "mailto:tradeukinvest@gmail.com?subject=" + urllib.parse.quote("Custom Backtest Request") + "&body=" + urllib.parse.quote(body)
-        st.success("Ready to send! Click the button below to open your email client.")
-        st.markdown(f'<a href="{mailto}" target="_blank" style="display:inline-block;background:#ff4b4b;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700;">Open Email to Send Request</a>', unsafe_allow_html=True)
+        gmail_password = os.environ.get("GMAIL_APP_PASSWORD", "")
+        if gmail_password:
+            try:
+                msg = MIMEText(body)
+                msg["Subject"] = "Custom Backtest Request"
+                msg["From"] = "tradeukinvest@gmail.com"
+                msg["To"] = "tradeukinvest@gmail.com"
+                with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+                    smtp.login("tradeukinvest@gmail.com", gmail_password)
+                    smtp.send_message(msg)
+                st.success("Request sent! I'll get back to you at " + req_email.strip() + ".")
+            except Exception as e:
+                st.error(f"Failed to send — please email tradeukinvest@gmail.com directly. ({e})")
+        else:
+            st.error("Email not configured on this server. Please contact tradeukinvest@gmail.com directly.")
