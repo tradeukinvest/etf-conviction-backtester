@@ -230,6 +230,28 @@ st.set_page_config(
     layout="wide",
 )
 
+# ── Sidebar ─────────────────────────────────────────────────────────────────────
+with st.sidebar:
+    st.markdown("## 📈 ETF Conviction Backtester")
+    st.caption("Free to use · Built with SEC N-PORT data")
+    st.divider()
+    st.markdown(
+        "**Like this tool?**\n\n"
+        "It's free and takes ~30s to run any allocation.\n\n"
+        "If it saves you time, a tip keeps the servers running 🙏"
+    )
+    st.link_button(
+        "☕ Support on Gumroad",
+        url="https://gsrome.gumroad.com/l/etf-conviction-backtester",
+        use_container_width=True,
+    )
+    st.divider()
+    st.caption(
+        "Data: SEC N-PORT filings · Prices: yfinance adjusted-close · "
+        "Benchmark: SPY\n\n"
+        "⚠ Past performance does not predict future results."
+    )
+
 st.markdown("""
 <style>
 /* ── Base typography ───────────────────────────────────────────────────────── */
